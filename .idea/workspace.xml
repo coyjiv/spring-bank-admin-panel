@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9a885c13-9cec-490e-9b04-3dfad9587509" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/SpringBankAdminPanelApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/model/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/model/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resources/BookRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resources/DefaultErrorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resources/EmployeeRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resources/HelloRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/P3OhkVt1qGfGyVTkcluOt/_buildManifest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/P3OhkVt1qGfGyVTkcluOt/_ssgManifest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/framework-04b2df298aee5fa5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/main-e1769f320825a132.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/pages/_app-df8e18ebbc1bfb84.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/pages/_error-ee5b5fb91d29d86f.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/pages/index-f590687895ebcc9b.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/webpack-8fa1640cc84ba8fe.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/css/3bd1a490a4bb53e6.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/css/e7d3bab42d9af29d.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/05a31a2ca4975f99-s.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/513657b02c5c193f-s.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/51ed15f9841b9f9d-s.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/d6b16ce4a6175f26-s.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/ec159349637c90ad-s.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/fd4db3eb5472fc27-s.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/next.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/vercel.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2Y3F9MpkxnJB3I5Y3DiL8SkQF05" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "android.gradle.sync.needed": "true",
+    "last_opened_file_path": "C:/Users/danda/Downloads/javasnake/spring-bank-admin-panel/backend/src/main/resources",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.28150874"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\danda\Downloads\javasnake\spring-bank-admin-panel\backend\src\main\resources" />
+      <recent name="C:\Users\danda\Downloads\javasnake\spring-bank-admin-panel\backend\src\main\java" />
+      <recent name="C:\Users\danda\Downloads\javasnake\spring-bank-admin-panel\backend\src\main\java\com\coyjiv" />
+      <recent name="C:\Users\danda\Downloads\javasnake\spring-bank-admin-panel\backend\src\main\resources\static" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.SpringBankAdminPanelApplication">
+    <configuration name="SpringBankAdminPanelApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.coyjiv.springbankadminpanel.SpringBankAdminPanelApplication" />
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.coyjiv.springbankadminpanel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in spring-bank-admin-panel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-bank-admin-panel" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="backend-0.0.1-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/backend/target/backend-0.0.1-SNAPSHOT.jar" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SpringBankAdminPanelApplication" />
+        <item itemvalue="JAR Application.backend-0.0.1-SNAPSHOT.jar" />
+        <item itemvalue="JUnit.All in spring-bank-admin-panel" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9a885c13-9cec-490e-9b04-3dfad9587509" name="Changes" comment="" />
+      <created>1699746203595</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699746203595</updated>
+    </task>
+    <servers />
+  </component>
+</project>
