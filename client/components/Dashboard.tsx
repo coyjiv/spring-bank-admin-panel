@@ -1,11 +1,17 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
+    BanknotesIcon,
   Bars3Icon,
   BellIcon,
+  BriefcaseIcon,
   CalendarIcon,
   ChartPieIcon,
   Cog6ToothIcon,
+  CurrencyDollarIcon,
+  CurrencyEuroIcon,
+  CurrencyPoundIcon,
+  CurrencyYenIcon,
   DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
@@ -13,24 +19,27 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import NextLink from "next/link"
+import { useRouter } from 'next/router'
 
 
-type Props = {}
+type Props = {
+    component: React.ReactNode
+}
 
-
-const navigation = [
-    { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-    { name: 'Team', href: '#', icon: UsersIcon, current: false },
-    { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-    { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-    { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-    { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+const navigationRaw = [
+    { name: 'Dashboard', href: '/', icon: HomeIcon, current: false, isShownForAll: true },
+    { name: 'Users', href: '/users', icon: UsersIcon, current: false, isShownForAll: false },
+    { name: 'Accounts', href: '/accounts', icon: BriefcaseIcon, current: false, isShownForAll: true },
+    { name: 'Transactions', href: '/transactions', icon: BanknotesIcon, current: false, isShownForAll: true },
+    // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false, isShownForAll: false },
+    // { name: 'Reports', href: '#', icon: ChartPieIcon, current: false, isShownForAll: false },
   ]
-  const teams = [
-    { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-    { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-    { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
-  ]
+
+const IS_ADMIN = true 
+
+const navigationFiltered = navigationRaw.filter((item) => item.isShownForAll || IS_ADMIN)
+
   const userNavigation = [
     { name: 'Your profile', href: '#' },
     { name: 'Sign out', href: '#' },
@@ -40,8 +49,12 @@ const navigation = [
     return classes.filter(Boolean).join(' ')
   }
 
-const Dashboard = (props: Props) => {
+const Dashboard = ({component}: Props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const route = useRouter();
+    const navigation = useMemo(()=>navigationFiltered.map((item) => 
+      ({...item, current: route.pathname.slice(1).includes(item.href) || route.pathname === item.href})), [route.pathname])
+
   return (
     <>
     <div>
@@ -101,7 +114,7 @@ const Dashboard = (props: Props) => {
                         <ul role="list" className="-mx-2 space-y-1">
                           {navigation.map((item) => (
                             <li key={item.name}>
-                              <a
+                              <NextLink
                                 href={item.href}
                                 className={classNames(
                                   item.current
@@ -118,30 +131,7 @@ const Dashboard = (props: Props) => {
                                   aria-hidden="true"
                                 />
                                 {item.name}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                      <li>
-                        <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div>
-                        <ul role="list" className="-mx-2 mt-2 space-y-1">
-                          {teams.map((team) => (
-                            <li key={team.name}>
-                              <a
-                                href={team.href}
-                                className={classNames(
-                                  team.current
-                                    ? 'bg-indigo-700 text-white'
-                                    : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
-                                  'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                )}
-                              >
-                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
-                                  {team.initial}
-                                </span>
-                                <span className="truncate">{team.name}</span>
-                              </a>
+                              </NextLink>
                             </li>
                           ))}
                         </ul>
@@ -173,9 +163,9 @@ const Dashboard = (props: Props) => {
         <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
           <div className="flex h-16 shrink-0 items-center">
             <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=white"
-              alt="Your Company"
+              className="h-40 -translate-x-10 w-auto"
+              src="/logo.svg"
+              alt="adminner"
             />
           </div>
           <nav className="flex flex-1 flex-col">
@@ -184,7 +174,7 @@ const Dashboard = (props: Props) => {
                 <ul role="list" className="-mx-2 space-y-1">
                   {navigation.map((item) => (
                     <li key={item.name}>
-                      <a
+                      <NextLink
                         href={item.href}
                         className={classNames(
                           item.current
@@ -201,30 +191,7 @@ const Dashboard = (props: Props) => {
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-              <li>
-                <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div>
-                <ul role="list" className="-mx-2 mt-2 space-y-1">
-                  {teams.map((team) => (
-                    <li key={team.name}>
-                      <a
-                        href={team.href}
-                        className={classNames(
-                          team.current
-                            ? 'bg-indigo-700 text-white'
-                            : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
-                          'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                        )}
-                      >
-                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
-                          {team.initial}
-                        </span>
-                        <span className="truncate">{team.name}</span>
-                      </a>
+                      </NextLink>
                     </li>
                   ))}
                 </ul>
@@ -293,7 +260,7 @@ const Dashboard = (props: Props) => {
                   />
                   <span className="hidden lg:flex lg:items-center">
                     <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                      Tom Cook
+                      Admin
                     </span>
                     <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                   </span>
@@ -331,7 +298,7 @@ const Dashboard = (props: Props) => {
         </div>
 
         <main className="py-10">
-          <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
+          <div className="px-4 sm:px-6 lg:px-8">{component}</div>
         </main>
       </div>
     </div>

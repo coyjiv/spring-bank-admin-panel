@@ -5,39 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a885c13-9cec-490e-9b04-3dfad9587509" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/SpringBankAdminPanelApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/model/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/model/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resources/BookRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resources/DefaultErrorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resources/EmployeeRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resources/HelloRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/P3OhkVt1qGfGyVTkcluOt/_buildManifest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/P3OhkVt1qGfGyVTkcluOt/_ssgManifest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/framework-04b2df298aee5fa5.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/main-e1769f320825a132.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/pages/_app-df8e18ebbc1bfb84.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/pages/_error-ee5b5fb91d29d86f.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/pages/index-f590687895ebcc9b.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/chunks/webpack-8fa1640cc84ba8fe.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/css/3bd1a490a4bb53e6.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/css/e7d3bab42d9af29d.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/05a31a2ca4975f99-s.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/513657b02c5c193f-s.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/51ed15f9841b9f9d-s.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/d6b16ce4a6175f26-s.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/ec159349637c90ad-s.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/_next/static/media/fd4db3eb5472fc27-s.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/next.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/vercel.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/AccountsDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/CustomerDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/Dao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Currency.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resource/AccountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resource/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/AccountService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/ServiceI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/node/node_modules/npm/node_modules/clone/clone.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/SpringBankAdminPanelApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/SpringBankAdminPanelApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +36,14 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,19 +66,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "android.gradle.sync.needed": "true",
-    "last_opened_file_path": "C:/Users/danda/Downloads/javasnake/spring-bank-admin-panel/backend/src/main/resources",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.28150874"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/danda/Downloads/javasnake/spring-bank-admin-panel/client/out&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.28150874&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\danda\Downloads\javasnake\spring-bank-admin-panel\client\out" />
       <recent name="C:\Users\danda\Downloads\javasnake\spring-bank-admin-panel\backend\src\main\resources" />
       <recent name="C:\Users\danda\Downloads\javasnake\spring-bank-admin-panel\backend\src\main\java" />
       <recent name="C:\Users\danda\Downloads\javasnake\spring-bank-admin-panel\backend\src\main\java\com\coyjiv" />
