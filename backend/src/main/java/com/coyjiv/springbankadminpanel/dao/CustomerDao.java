@@ -3,82 +3,133 @@ package com.coyjiv.springbankadminpanel.dao;
 import com.coyjiv.springbankadminpanel.domain.Account;
 import com.coyjiv.springbankadminpanel.domain.Currency;
 import com.coyjiv.springbankadminpanel.domain.Customer;
+import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
+@RequiredArgsConstructor
 public class CustomerDao implements Dao<Customer> {
 
-    private final List<Customer> customers = new ArrayList<>(
-            List.of(
-                    new Customer( "John", "test@test.com",32),
-                    new Customer( "Lira", "test2@test.com",30)
-            ));
+    @PersistenceUnit
+    private final EntityManagerFactory entityManagerFactory;
+
+    @Transactional
     @Override
     public Customer save(Customer object) {
-        customers.add(object);
+        try (var entityManager = entityManagerFactory.createEntityManager()) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(object);
+            entityManager.getTransaction().commit();
+        }
         return object;
     }
 
+    @Transactional
     @Override
     public boolean delete(Customer obj) {
-        return customers.remove(obj);
+        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
+            entityManager.getTransaction().begin();
+            entityManager.remove(obj);
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (HibernateException e) {
+            entityManagerFactory.close();
+            return false;
+        }
     }
 
+    @Transactional
     @Override
     public void deleteAll(List<Customer> entities) {
-        customers.removeAll(entities);
+        try (var entityManager = entityManagerFactory.createEntityManager()) {
+            entityManager.getTransaction().begin();
+            for (Customer customer : entities) {
+                entityManager.remove(customer);
+            }
+            entityManager.getTransaction().commit();
+        }
     }
 
+    @Transactional
     @Override
     public void saveAll(List<Customer> entities) {
-        customers.addAll(entities);
+        try (var entityManager = entityManagerFactory.createEntityManager()) {
+            entityManager.getTransaction().begin();
+            for (Customer customer : entities) {
+                entityManager.persist(customer);
+            }
+            entityManager.getTransaction().commit();
+        }
     }
 
     @Override
     public List<Customer> findAll() {
-        return customers;
+        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
+            List<Customer> customers = null;
+            EntityGraph entityGraph = entityManager.createEntityGraph("customerWithAccountsAndEmployers");
+            try {
+                customers = entityManager.createQuery(" from Customer e", Customer.class)
+                        .setHint("jakarta.persistence.fetchgraph", entityGraph)
+                        .getResultList();
+            } catch (HibernateException ex) {
+                ex.printStackTrace();
+            } finally {
+                entityManager.close();
+            }
+            return customers;
+        }
     }
 
+    @Transactional
     @Override
     public boolean deleteById(long id) {
-        return customers.removeIf(customer -> customer.getId() == id);
-    }
-
-    @Override
-    public Customer getOne(long id) {
-        return customers.stream().filter(customer -> customer.getId() == id).findFirst().orElse(null);
-    }
-
-    @Override
-    public boolean edit(Map<String, String> json) {
-        AtomicLong id = new AtomicLong();
-        json.forEach((key, value) -> {
-            if (key.equals("id")) {
-                id.set(Long.parseLong(value));
-            }
-        });
-        Customer customer = getOne(id.get());
-        if (customer == null) {
+        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
+            entityManager.getTransaction().begin();
+            entityManager.remove(entityManager.find(Customer.class, id));
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
             return false;
         }
-        json.forEach((key, value) -> {
-            switch (key) {
-                case "name":
-                    customer.setName(value);
-                    break;
-                case "email":
-                    customer.setEmail(value);
-                    break;
-                case "age":
-                    customer.setAge(Integer.parseInt(value));
-                    break;
-            }
-        });
-        return true;
+    }
+
+    @Transactional
+    @Override
+    public Customer getOne(long id) {
+        try (var entityManager = entityManagerFactory.createEntityManager()) {
+            return entityManager.find(Customer.class, id);
+        }
+    }
+
+    @Transactional
+    @Override
+    public boolean edit(Map<String, String> json) {
+        try (var entityManager = entityManagerFactory.createEntityManager()) {
+            entityManager.getTransaction().begin();
+            var customer = entityManager.find(Customer.class, Long.parseLong(json.get("id")));
+            customer.setName(json.get("name"));
+            customer.setEmail(json.get("email"));
+            customer.setAge(Integer.parseInt(json.get("age")));
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public List<Account> getAccounts(long id) {
+        try (var entityManager = entityManagerFactory.createEntityManager()) {
+            var customer = entityManager.find(Customer.class, id);
+            return customer.getAccounts();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.coyjiv.springbankadminpanel;
+package com.coyjiv.springbankadminpanel.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

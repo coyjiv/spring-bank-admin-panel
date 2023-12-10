@@ -1,6 +1,8 @@
 package com.coyjiv.springbankadminpanel.service;
 
+import com.coyjiv.springbankadminpanel.dao.CustomerDao;
 import com.coyjiv.springbankadminpanel.dao.Dao;
+import com.coyjiv.springbankadminpanel.domain.Account;
 import com.coyjiv.springbankadminpanel.domain.Customer;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +12,9 @@ import java.util.Map;
 @Service
 public class CustomerService implements ServiceI<Customer> {
 
-    private final Dao<Customer> customerDao;
+    private final CustomerDao customerDao;
 
-    public CustomerService(Dao<Customer> customerDao){
+    public CustomerService(CustomerDao customerDao){
         this.customerDao = customerDao;
     }
     @Override
@@ -53,6 +55,10 @@ public class CustomerService implements ServiceI<Customer> {
     @Override
     public boolean edit(Map<String, String> json) {
         return customerDao.edit(json);
+    }
+
+    public List<Account> getAccounts(long id){
+        return customerDao.getAccounts(id);
     }
 
 

@@ -3,7 +3,12 @@ package com.coyjiv.springbankadminpanel.dao;
 import com.coyjiv.springbankadminpanel.domain.Account;
 import com.coyjiv.springbankadminpanel.domain.Currency;
 import com.coyjiv.springbankadminpanel.domain.Customer;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceUnit;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -15,70 +20,103 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequiredArgsConstructor
 public class AccountsDao implements Dao<Account> {
 
-    private final List<Account> accounts = new ArrayList<>();
+    @PersistenceUnit
+    private EntityManagerFactory entityManagerFactory;
 
     @Override
     public Account save(Account object) {
-        accounts.add(object);
+        EntityTransaction transaction = null;
+        try(EntityManager entityManager = entityManagerFactory.createEntityManager()){
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+            entityManager.persist(object);
+            transaction.commit();
+        } catch (HibernateException e){
+            if (transaction != null){
+                transaction.rollback();
+            }
+        }
         return object;
     }
 
     @Override
     public boolean delete(Account obj) {
-        return accounts.remove(obj);
+        try(EntityManager entityManager = entityManagerFactory.createEntityManager()){
+            entityManager.remove(obj);
+            return true;
+        } catch (HibernateException e){
+            return false;
+        }
     }
 
     @Override
     public void deleteAll(List<Account> entities) {
-        accounts.removeAll(entities);
+        try(EntityManager entityManager = entityManagerFactory.createEntityManager()){
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+            for (Account account : entities) {
+                entityManager.remove(account);
+            }
+            transaction.commit();
+        } catch (HibernateException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void saveAll(List<Account> entities) {
-        accounts.addAll(entities);
+        try(EntityManager entityManager = entityManagerFactory.createEntityManager()){
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+            for (Account account : entities) {
+                entityManager.persist(account);
+            }
+            transaction.commit();
+        } catch (HibernateException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public List<Account> findAll() {
+        List<Account> accounts;
+        try(EntityManager entityManager = entityManagerFactory.createEntityManager()){
+            accounts = entityManager.createQuery("from Account a", Account.class).getResultList();
+        }
         return accounts;
     }
 
     @Override
     public boolean deleteById(long id) {
-        return accounts.removeIf(account -> account.getId() == id);
+        try(EntityManager entityManager = entityManagerFactory.createEntityManager()){
+            entityManager.createQuery("delete from Account a where a.id = :id")
+                    .setParameter("id", id)
+                    .executeUpdate();
+            return true;
+        } catch (HibernateException e){
+            return false;
+        }
     }
 
     @Override
     public Account getOne(long id) {
-        return accounts.stream().filter(account -> account.getId() == id).findFirst().orElse(null);
+        try(EntityManager entityManager = entityManagerFactory.createEntityManager()){
+            return entityManager.find(Account.class, id);
+        }
     }
 
     @Override
     public boolean edit(Map<String, String> json) {
-        AtomicLong id = new AtomicLong();
-        json.forEach((key, value) -> {
-            if (key.equals("id")) {
-                id.set(Long.parseLong(value));
-            }
-        });
-        Account account = getOne(id.get());
-        if (account == null) {
+        try(EntityManager entityManager = entityManagerFactory.createEntityManager()){
+            entityManager.createQuery("update Account a set a.number = :number, a.currency = :currency, a.balance = :balance where a.id = :id")
+                    .setParameter("number", json.get("accountNumber"))
+                    .setParameter("currency", Currency.valueOf(json.get("currency")))
+                    .setParameter("balance", Double.parseDouble(json.get("balance")))
+                    .executeUpdate();
+            return true;
+        } catch (HibernateException e){
             return false;
         }
-        json.forEach((key, value) -> {
-            switch (key) {
-                case "accountNumber":
-                    account.setNumber(value);
-                    break;
-                case "currency":
-                    account.setCurrency(Currency.valueOf(value));
-                    break;
-                case "balance":
-                    account.setBalance(Double.parseDouble(value));
-                    break;
-            }
-        });
-        return true;
     }
 
     public Account createAccount(Currency currency, Customer customer){
@@ -87,6 +125,10 @@ public class AccountsDao implements Dao<Account> {
     }
 
     public Account getOne(String number) {
-        return accounts.stream().filter(account -> account.getNumber().equals(number)).findFirst().orElse(null);
+        try(EntityManager entityManager = entityManagerFactory.createEntityManager()){
+            return entityManager.createQuery("from Account a where a.number = :number", Account.class)
+                    .setParameter("number", number)
+                    .getSingleResult();
+        }
     }
 }

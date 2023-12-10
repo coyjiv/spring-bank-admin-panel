@@ -79,10 +79,10 @@ public class CustomerController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         try {
-            Customer customer = customerService.getOne(id);
-            customerService.delete(customer);
+            customerService.deleteById(id);
             return ResponseEntity.ok().body("deleted");
         } catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.badRequest().body("unable to delete a user " + e);
         }
     }
