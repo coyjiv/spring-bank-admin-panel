@@ -1,13 +1,14 @@
-package com.coyjiv.springbankadminpanel.domain;
+package com.coyjiv.springbankadminpanel.domain.Customer;
 
+import com.coyjiv.springbankadminpanel.domain.AbstractEntity;
+import com.coyjiv.springbankadminpanel.domain.Account.Account;
+import com.coyjiv.springbankadminpanel.domain.Employer;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -22,11 +23,12 @@ import java.util.Set;
 public class Customer extends AbstractEntity {
     private String name;
     private String email;
-    private int age;
+    private Integer age;
+    private String password;
     @JsonManagedReference
     @ToString.Exclude
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Account> accounts;
+    private Set<Account> accounts;
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "CUSTOMEREMPLOYMENT",
@@ -37,11 +39,16 @@ public class Customer extends AbstractEntity {
     //companies that the customer is working for
     private Set<Employer> employers;
 
-    public Customer(String name, String email, int age) {
+
+    private String phone;
+
+    public Customer(String name, String email, int age, String phone, String password) {
         this.name = name;
         this.email = email;
         this.age = age;
-        this.accounts = new ArrayList<>();
+        this.phone = phone;
+        this.password = password;
+        this.accounts = new HashSet<>();
     }
 
     public void addAccount(Account account){

@@ -13,4 +13,6 @@ public interface ServiceI<T>{
     T getOne(long id);
 
     boolean edit(Map<String, String> json);
+
+    boolean edit(T obj);
 }

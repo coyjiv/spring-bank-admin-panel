@@ -1,10 +1,9 @@
 package com.coyjiv.springbankadminpanel.service;
 
 import com.coyjiv.springbankadminpanel.dao.AccountsDao;
-import com.coyjiv.springbankadminpanel.dao.Dao;
-import com.coyjiv.springbankadminpanel.domain.Account;
-import com.coyjiv.springbankadminpanel.domain.Currency;
-import com.coyjiv.springbankadminpanel.domain.Customer;
+import com.coyjiv.springbankadminpanel.domain.Account.Account;
+import com.coyjiv.springbankadminpanel.domain.Account.Currency;
+import com.coyjiv.springbankadminpanel.domain.Customer.Customer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,6 +55,11 @@ public class AccountService implements ServiceI<Account> {
     @Override
     public boolean edit(Map<String, String> json) {
         return accountDao.edit(json);
+    }
+
+    @Override
+    public boolean edit(Account obj) {
+        return accountDao.edit(obj);
     }
 
     public Account getOne(String number) {

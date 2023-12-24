@@ -1,8 +1,5 @@
 package com.coyjiv.springbankadminpanel.dao;
 
-import com.coyjiv.springbankadminpanel.domain.Currency;
-import com.coyjiv.springbankadminpanel.domain.Customer;
-
 import java.util.List;
 import java.util.Map;
 

@@ -1,15 +1,11 @@
 package com.coyjiv.springbankadminpanel.domain;
 
+import com.coyjiv.springbankadminpanel.domain.Customer.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
-
 
 
 //Company

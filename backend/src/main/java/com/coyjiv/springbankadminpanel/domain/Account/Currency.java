@@ -1,4 +1,4 @@
-package com.coyjiv.springbankadminpanel.domain;
+package com.coyjiv.springbankadminpanel.domain.Account;
 
 
 public enum Currency {

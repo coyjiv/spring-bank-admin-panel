@@ -47,4 +47,9 @@ public class EmployerService implements ServiceI<Employer>{
     public boolean edit(Map<String, String> json) {
         return false;
     }
+
+    @Override
+    public boolean edit(Employer obj) {
+        return false;
+    }
 }

@@ -1,13 +1,13 @@
 package com.coyjiv.springbankadminpanel.service;
 
 import com.coyjiv.springbankadminpanel.dao.CustomerDao;
-import com.coyjiv.springbankadminpanel.dao.Dao;
-import com.coyjiv.springbankadminpanel.domain.Account;
-import com.coyjiv.springbankadminpanel.domain.Customer;
+import com.coyjiv.springbankadminpanel.domain.Account.Account;
+import com.coyjiv.springbankadminpanel.domain.Customer.Customer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class CustomerService implements ServiceI<Customer> {
@@ -57,7 +57,11 @@ public class CustomerService implements ServiceI<Customer> {
         return customerDao.edit(json);
     }
 
-    public List<Account> getAccounts(long id){
+    public boolean edit(Customer customer){
+        return customerDao.edit(customer);
+    }
+
+    public Set<Account> getAccounts(long id){
         return customerDao.getAccounts(id);
     }
 

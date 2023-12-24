@@ -33,6 +33,8 @@ const AddUserModal = ({open, handleClose, handleUpdate}: Props) => {
             name,
             email,
             age,
+            phone: "+380953458475",
+            password: "123456"
         }
         fetch(SERVER_URL + '/customers/create', {
             method: 'POST',

@@ -5,7 +5,7 @@ export const UserAccounts = ({ accounts }: { accounts: Account[] }) => (
     <div className='border rounded-2xl px-5 py-5 mb-5'>
       <p className='font-medium'>User Accounts : </p>
       <div className='flex flex-col gap-2 mt-4'>
-        {accounts.length > 0 ? accounts.map((account: Account, index) => (
+        {accounts?.length > 0 ? accounts.map((account: Account, index) => (
           <div key={account.id}>
             <div className="flex justify-start gap-5 hover:bg-slate-400/10 text-gray-500 p-2 rounded-xl">
               <p>Account identifier: {account.number}</p>

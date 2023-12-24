@@ -1,43 +1,47 @@
 package com.coyjiv.springbankadminpanel.resource;
 
-import com.coyjiv.springbankadminpanel.domain.Account;
-import com.coyjiv.springbankadminpanel.domain.Currency;
-import com.coyjiv.springbankadminpanel.domain.Customer;
+import com.coyjiv.springbankadminpanel.domain.Account.Account;
+import com.coyjiv.springbankadminpanel.domain.Account.Currency;
+import com.coyjiv.springbankadminpanel.domain.Customer.Customer;
 import com.coyjiv.springbankadminpanel.service.AccountService;
 import com.coyjiv.springbankadminpanel.service.CustomerService;
+import com.coyjiv.springbankadminpanel.transfer.Account.AccountDTORequest;
+import com.coyjiv.springbankadminpanel.transfer.Account.AccountRequestMapper;
+import com.coyjiv.springbankadminpanel.transfer.Account.AccountResponseMapper;
+import com.coyjiv.springbankadminpanel.transfer.Customer.CustomerDTORequest;
+import com.coyjiv.springbankadminpanel.transfer.Customer.CustomerDTOResponse;
+import com.coyjiv.springbankadminpanel.transfer.Customer.CustomerRequestMapper;
+import com.coyjiv.springbankadminpanel.transfer.Customer.CustomerResponseMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
-// enable all origins for now
-//@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequiredArgsConstructor
 @RequestMapping("/customers")
 public class CustomerController {
     private final CustomerService customerService;
     private final AccountService accountService;
-
-    public CustomerController(CustomerService customerService, AccountService accountService){
-        this.customerService = customerService;
-        this.accountService = accountService;
-    }
+    private final CustomerRequestMapper customerRequestMapper;
+    private final CustomerResponseMapper customerResponseMapper;
+    private final AccountResponseMapper accountResponseMapper;
 
     @Operation(summary = "get all customers")
     @GetMapping("/")
-    public List<Customer> getCustomers(){
-        return customerService.findAll();
+    public List<CustomerDTOResponse> getCustomers(){
+        return customerService.findAll().stream().map(customerResponseMapper::convertToDto).toList();
     }
 
     @Operation(summary = "get a customer by id")
     @Parameter(name = "id", description = "customer id")
     @GetMapping("/{id}")
-    public Customer getCustomer(@PathVariable Long id){
-        return customerService.getOne(id);
+    public CustomerDTOResponse getCustomer(@PathVariable Long id){
+        return customerResponseMapper.convertToDto(customerService.getOne(id));
     }
 
     @Operation(summary = "create a customer")
@@ -45,11 +49,11 @@ public class CustomerController {
     @Parameter(name = "email", description = "customer email")
     @Parameter(name = "age", description = "customer age")
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody Map<String, String> customerData){
+    public ResponseEntity<?> create(@RequestBody CustomerDTORequest dto){
         try{
-        Customer customer = new Customer(customerData.get("name"), customerData.get("email"), Integer.parseInt(customerData.get("age")));
+        Customer customer = new Customer(dto.getName(), dto.getEmail(), dto.getAge(), dto.getPhone(), dto.getPassword());
             customerService.save(customer);
-            return ResponseEntity.ok().body(customer);
+            return ResponseEntity.ok().body(customerResponseMapper.convertToDto(customer));
         } catch (Exception e){
             return ResponseEntity.badRequest().body("unable to create a user " + e);
         }
@@ -61,11 +65,11 @@ public class CustomerController {
     @Parameter(name = "email", description = "customer email")
     @Parameter(name = "age", description = "customer age")
     @PutMapping("/edit")
-    public ResponseEntity<?> edit(@RequestBody Map<String, String> customerData){
+    public ResponseEntity<?> edit(@RequestBody CustomerDTORequest dto){
         try {
-            Customer customer = customerService.getOne(Long.parseLong(customerData.get("id")));
-            if (customerService.edit(customerData)) {
-                return ResponseEntity.ok().body(customer);
+            Customer customer = customerService.getOne(dto.getId());
+            if (customerService.edit(customerRequestMapper.convertToEntity(dto))) {
+                return ResponseEntity.ok().body(customerRequestMapper.convertToDto(customer));
             } else {
                 return ResponseEntity.badRequest().body("unable to edit a user");
             }
@@ -91,12 +95,12 @@ public class CustomerController {
     @Parameter(name = "customerId", description = "customer id")
     @Parameter(name = "currency", description = "currency")
     @PostMapping("/createAccount")
-    public ResponseEntity<?> createAccount(@RequestBody Map<String, String> accountData){
+    public ResponseEntity<?> createAccount(@RequestBody AccountDTORequest dto){
         try {
-            Customer customer = customerService.getOne(Long.parseLong(accountData.get("customerId")));
-            Account account = accountService.createAccount(Currency.valueOf(accountData.get("currency")), customer);
+            Customer customer = customerService.getOne(dto.getCustomer().getId());
+            Account account = accountService.createAccount(dto.getCurrency(), customer);
             customer.addAccount(account);
-            return ResponseEntity.ok().body(account);
+            return ResponseEntity.ok().body(accountResponseMapper.convertToDto(account));
         } catch (Exception e){
             return ResponseEntity.badRequest().body("unable to create an account " + e);
         }
