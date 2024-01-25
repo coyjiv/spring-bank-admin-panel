@@ -5,6 +5,7 @@ import com.coyjiv.springbankadminpanel.domain.Account.AccountStatus;
 import com.coyjiv.springbankadminpanel.domain.Account.Currency;
 import com.coyjiv.springbankadminpanel.transfer.Customer.CustomerDTORequest;
 import com.coyjiv.springbankadminpanel.transfer.DTOMapperFacade;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

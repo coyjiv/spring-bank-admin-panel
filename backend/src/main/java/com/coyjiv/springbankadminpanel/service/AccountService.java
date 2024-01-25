@@ -4,11 +4,18 @@ import com.coyjiv.springbankadminpanel.dao.AccountsDao;
 import com.coyjiv.springbankadminpanel.domain.Account.Account;
 import com.coyjiv.springbankadminpanel.domain.Account.Currency;
 import com.coyjiv.springbankadminpanel.domain.Customer.Customer;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
+//@TODO: change types from boolean to void
 @Service
 public class AccountService implements ServiceI<Account> {
     private final AccountsDao accountDao;
@@ -18,58 +25,80 @@ public class AccountService implements ServiceI<Account> {
     }
 
     @Override
+    @Transactional
     public Account save(Account object) {
         return accountDao.save(object);
     }
 
+
     @Override
-    public boolean delete(Account obj) {
-        return accountDao.delete(obj);
+    @Transactional
+    public void delete(Account obj) {
+        accountDao.delete(obj);
     }
 
     @Override
+    @Transactional
     public void deleteAll(List<Account> entities) {
         accountDao.deleteAll(entities);
     }
 
     @Override
+    @Transactional
     public void saveAll(List<Account> entities) {
         accountDao.saveAll(entities);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Account> findAll() {
         return accountDao.findAll();
     }
 
     @Override
-    public boolean deleteById(long id) {
-        return accountDao.deleteById(id);
+    @Transactional
+    public void deleteById(long id) {
+        accountDao.deleteById(id);
     }
 
     @Override
-    public Account getOne(long id) {
-        return accountDao.getOne(id);
+    @Transactional
+    public Optional<Account> getOne(long id) {
+        Optional<Account> potentialAcc = accountDao.findById(id);
+        return potentialAcc;
+    }
+
+    @Transactional
+    public void edit(Map<String, String> json, Long id) {
+        Optional<Account> accountOptional = accountDao.findById(id);
+        if(accountOptional.isEmpty()) return;
+        json.forEach((key, value) -> {
+                    Field field = ReflectionUtils.findField(Account.class, key);
+                    if (field != null) {
+                        field.setAccessible(true);
+                        ReflectionUtils.setField(field, accountOptional.get(), value);
+                    }
+                });
+
+        accountDao.save(accountOptional.get());
     }
 
     @Override
-    public boolean edit(Map<String, String> json) {
-        return accountDao.edit(json);
+    @Transactional
+    public void edit(Account obj) {
+        accountDao.save(obj);
     }
 
-    @Override
-    public boolean edit(Account obj) {
-        return accountDao.edit(obj);
-    }
-
+    @Transactional(readOnly = true)
     public Account getOne(String number) {
         return accountDao.findAll().stream().filter(account -> account.getNumber().equals(number)).findFirst().orElse(null);
     }
 
+    @Transactional
     public Account createAccount(Currency currency, Customer customer){
-        return accountDao.createAccount(currency, customer);
+        return accountDao.save(new Account(currency, customer));
     }
-
+    @Transactional
     public boolean topUp(String number, double amount){
         Account account = getOne(number);
         if(account != null){
@@ -79,7 +108,7 @@ public class AccountService implements ServiceI<Account> {
         return false;
     }
 
-
+    @Transactional
     public boolean withdraw(String accountNumber, double amount) {
         Account account = getOne(accountNumber);
         if(account != null && account.getBalance() >= amount){
@@ -88,7 +117,7 @@ public class AccountService implements ServiceI<Account> {
         }
         return false;
     }
-
+    @Transactional
     public boolean transfer(String fromAccountNumber, String toAccountNumber, double amount) {
         Account fromAccount = getOne(fromAccountNumber);
         Account toAccount = getOne(toAccountNumber);
@@ -98,5 +127,8 @@ public class AccountService implements ServiceI<Account> {
             return true;
         }
         return false;
+    }
+    Set<Account> findAllByCustomerId(Long id){
+        return accountDao.findAllByCustomerId(id);
     }
 }

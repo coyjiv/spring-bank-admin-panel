@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,23 +33,30 @@ public class CustomerController {
     private final AccountResponseMapper accountResponseMapper;
 
     @Operation(summary = "get all customers")
-    @GetMapping("/")
-    public List<CustomerDTOResponse> getCustomers(){
-        return customerService.findAll().stream().map(customerResponseMapper::convertToDto).toList();
+    @GetMapping("/{page}/{size}")
+    public List<CustomerDTOResponse> getCustomers(@PathVariable int page, @PathVariable int size){
+        return customerService.findAll(page, size).stream().map(customerResponseMapper::convertToDto).toList();
     }
 
+    @Operation(summary = "get pagination info")
+    @GetMapping("/pagination/{page}/{size}")
+    public Map<String, Integer> getPaginationInfo(@PathVariable int page, @PathVariable int size){
+        return customerService.getPaginationInfo(page, size);
+    }
     @Operation(summary = "get a customer by id")
     @Parameter(name = "id", description = "customer id")
     @GetMapping("/{id}")
-    public CustomerDTOResponse getCustomer(@PathVariable Long id){
-        return customerResponseMapper.convertToDto(customerService.getOne(id));
+    public ResponseEntity<?> getCustomer(@PathVariable Long id){
+        Optional<Customer> customer = customerService.getOne(id);
+         if(customer.isPresent()){
+             return ResponseEntity.ok(customerResponseMapper.convertToDto(customer.get()));
+         } else{
+                return ResponseEntity.badRequest().body("unable to find a user");
+         }
     }
 
     @Operation(summary = "create a customer")
-    @Parameter(name = "name", description = "customer name")
-    @Parameter(name = "email", description = "customer email")
-    @Parameter(name = "age", description = "customer age")
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody CustomerDTORequest dto){
         try{
         Customer customer = new Customer(dto.getName(), dto.getEmail(), dto.getAge(), dto.getPhone(), dto.getPassword());
@@ -60,27 +68,25 @@ public class CustomerController {
     }
 
     @Operation(summary = "edit a customer")
-    @Parameter(name = "id", description = "customer id")
-    @Parameter(name = "name", description = "customer name")
-    @Parameter(name = "email", description = "customer email")
-    @Parameter(name = "age", description = "customer age")
-    @PutMapping("/edit")
+    @PutMapping("/")
     public ResponseEntity<?> edit(@RequestBody CustomerDTORequest dto){
         try {
-            Customer customer = customerService.getOne(dto.getId());
-            if (customerService.edit(customerRequestMapper.convertToEntity(dto))) {
-                return ResponseEntity.ok().body(customerRequestMapper.convertToDto(customer));
+            Optional<Customer> customer = customerService.getOne(dto.getId());
+            System.out.println(dto);
+            if (customer.isPresent()) {
+                customerService.edit(customerRequestMapper.convertToEntity(dto));
+                return ResponseEntity.ok().body(customerRequestMapper.convertToDto(customer.get()));
             } else {
-                return ResponseEntity.badRequest().body("unable to edit a user");
+                return ResponseEntity.badRequest().body("unable to edit a user, cannot find a user");
             }
         } catch (Exception e){
-            return ResponseEntity.badRequest().body("unable to edit a user " + e);
+            return ResponseEntity.badRequest().body("ERROR unable to edit a user " + e);
         }
     }
 
     @Operation(summary = "delete a customer")
     @Parameter(name = "id", description = "customer id")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         try {
             customerService.deleteById(id);
@@ -92,30 +98,14 @@ public class CustomerController {
     }
 
     @Operation(summary = "Create an account for a customer")
-    @Parameter(name = "customerId", description = "customer id")
-    @Parameter(name = "currency", description = "currency")
-    @PostMapping("/createAccount")
-    public ResponseEntity<?> createAccount(@RequestBody AccountDTORequest dto){
+    @PostMapping("/createAccount/{id}/{currency}")
+    public ResponseEntity<?> createAccount(@PathVariable Long id, @PathVariable Currency currency){
         try {
-            Customer customer = customerService.getOne(dto.getCustomer().getId());
-            Account account = accountService.createAccount(dto.getCurrency(), customer);
-            customer.addAccount(account);
+            Optional<Customer> customer = customerService.getOne(id);
+            Account account = accountService.createAccount(currency, customer.get());
             return ResponseEntity.ok().body(accountResponseMapper.convertToDto(account));
         } catch (Exception e){
             return ResponseEntity.badRequest().body("unable to create an account " + e);
-        }
-    }
-
-    @Operation(summary = "delete an account from a customer")
-    @Parameter(name = "id", description = "account id")
-    @DeleteMapping("/deleteAccount/{id}")
-    public ResponseEntity<?> deleteAccount(@PathVariable Long id){
-        try {
-            Account account = accountService.getOne(id);
-            accountService.delete(account);
-            return ResponseEntity.ok().body("deleted");
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body("unable to delete an account " + e);
         }
     }
 

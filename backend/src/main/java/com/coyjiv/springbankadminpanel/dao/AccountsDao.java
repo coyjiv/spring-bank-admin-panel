@@ -10,12 +10,16 @@ import jakarta.persistence.PersistenceUnit;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.HibernateException;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Repository
 public interface AccountsDao extends JpaRepository<Account, Long> {
-
+    @Query("SELECT a FROM Account a WHERE a.owner.id = ?1")
+    Set<Account> findAllByCustomerId(Long id);
+//    Set<Account> findAccountsByOwner(Long id);
 }

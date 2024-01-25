@@ -6,7 +6,12 @@ export const initialState = {
     addModalOpen: false,
     removeModalOpen: false,
     error: null,
-    selectedCustomer: null
+    selectedCustomer: null,
+    pagination: {
+      page: 1,
+      limit: 10,
+      total: 10
+    },
   };
  export interface UsersState {
     customers: Customer[] | [];
@@ -15,6 +20,11 @@ export const initialState = {
     removeModalOpen: boolean;
     error: null;
     selectedCustomer: Customer | null;
+    pagination: {
+      page: number;
+      limit: number;
+      total: number;
+    }
   }
   export interface UsersAction {
     type:   'SET_CUSTOMERS' | 
@@ -24,7 +34,10 @@ export const initialState = {
             'SET_SELECTED_CUSTOMER' |
             'UPDATE_CUSTOMER' |
             'CREATE_CUSTOMER' |
-            'DELETE_CUSTOMER';
+            'DELETE_CUSTOMER' | 
+            'SET_PAGINATION' |
+            'NEXT_PAGE' |
+            'PREV_PAGE';
     payload: any;
   }
   
@@ -55,6 +68,18 @@ export  function reducer(state:UsersState, action:
       case 'DELETE_CUSTOMER':
         const filteredCustomers = state.customers.filter(customer => customer.id !== action.payload.id);
         return { ...state, customers: filteredCustomers };
+        case 'SET_PAGINATION':
+          return { ...state, pagination: action.payload };
+        case 'NEXT_PAGE':
+          if(state.pagination.page === state.pagination.total) {
+            return state;
+          }
+          return { ...state, pagination: { ...state.pagination, page: state.pagination.page + 1 } };
+          case 'PREV_PAGE':
+            if(state.pagination.page === 1) {
+              return state;
+            }
+            return { ...state, pagination: { ...state.pagination, page: state.pagination.page - 1 } };
       default:
         return state;
     }

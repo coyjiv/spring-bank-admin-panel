@@ -34,13 +34,17 @@ const EditCustomerModal = ({ open, handleClose, customer, handleUpdate }: Props)
             name,
             email,
             age,
-            id: customer.id
+            id: customer.id,
+            phone: null,
+            password: null
         }
         const oldData = {
             name: customer.name,
             email: customer.email,
             age: customer.age,
-            id: customer.id
+            id: customer.id,
+            phone: customer?.phone,
+            password: customer?.password
         }
         if (JSON.stringify(data) === JSON.stringify(oldData)) {
             handleClose()

@@ -5,17 +5,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class EmployerService implements ServiceI<Employer>{
+
+
     @Override
     public Employer save(Employer object) {
         return null;
     }
 
     @Override
-    public boolean delete(Employer obj) {
-        return false;
+    public void delete(Employer obj) {
+
     }
 
     @Override
@@ -34,22 +37,17 @@ public class EmployerService implements ServiceI<Employer>{
     }
 
     @Override
-    public boolean deleteById(long id) {
-        return false;
+    public void deleteById(long id) {
+
     }
 
     @Override
-    public Employer getOne(long id) {
-        return null;
+    public Optional<Employer> getOne(long id) {
+        return Optional.empty();
     }
 
     @Override
-    public boolean edit(Map<String, String> json) {
-        return false;
-    }
+    public void edit(Employer obj) {
 
-    @Override
-    public boolean edit(Employer obj) {
-        return false;
     }
 }

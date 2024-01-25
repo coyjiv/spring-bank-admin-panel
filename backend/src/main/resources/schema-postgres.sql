@@ -12,8 +12,8 @@ CREATE TABLE public.customers (
                                   age INT NOT NULL,
                                   phone VARCHAR(250) NOT NULL DEFAULT '0000000000',
                                   password VARCHAR(250) NOT NULL DEFAULT 'password',
-                                  created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                  last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+                                  created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                  last_modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
 
@@ -25,8 +25,8 @@ CREATE TABLE public.accounts (
                                  status VARCHAR(10) NOT NULL DEFAULT 'ACTIVE',
                                  balance NUMERIC (12,2) NOT NULL DEFAULT 0,
                                  customer_id INTEGER REFERENCES public.customers (id) NOT NULL,
-                                 created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                 last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+                                 created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                 last_modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create employers table
@@ -34,8 +34,8 @@ CREATE TABLE public.employers (
                                   id SERIAL PRIMARY KEY,
                                   name VARCHAR(250) NOT NULL,
                                   address VARCHAR(250) NOT NULL,
-                                  created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                  last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+                                  created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                  last_modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create customerEmployment table
@@ -43,6 +43,6 @@ CREATE TABLE public.customerEmployment (
                                            id SERIAL PRIMARY KEY,
                                            customer_id INTEGER REFERENCES public.customers (id) NOT NULL,
                                            employer_id INTEGER REFERENCES public.employers (id) NOT NULL,
-                                           created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                           last_modified_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+                                           created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                           last_modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

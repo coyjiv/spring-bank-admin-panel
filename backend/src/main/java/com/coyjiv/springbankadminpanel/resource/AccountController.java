@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/accounts")
@@ -46,11 +47,14 @@ public class AccountController {
     @Parameter(name = "currency", description = "currency")
     @Parameter(name = "balance", description = "balance")
     @Parameter(name = "customerId", description = "customer id")
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody AccountDTORequest dto){
         try{
-            Customer customer = customerService.getOne(dto.getCustomer().getId());
-            Account account = accountService.createAccount(dto.getCurrency(), customer);
+            Optional<Customer> customer = customerService.getOne(dto.getCustomer().getId());
+            if(customer.isEmpty()){
+                return ResponseEntity.badRequest().body("customer not found");
+            }
+            Account account = accountService.createAccount(dto.getCurrency(), customer.get());
             accountService.save(account);
             return ResponseEntity.ok().body(responseAccountMapper.convertToDto(account));
         } catch (Exception e){
@@ -63,13 +67,13 @@ public class AccountController {
     @Parameter(name = "currency", description = "currency")
     @Parameter(name = "balance", description = "balance")
     @Parameter(name = "customerId", description = "customer id")
-    @PutMapping("/edit")
+    @PutMapping("/")
     public ResponseEntity<?> edit(@RequestBody AccountDTORequest dto){
         try {
             Account account = accountService.getOne(dto.getAccountNumber());
             account.setCurrency(dto.getCurrency());
             account.setBalance(dto.getAccountBalance());
-            account.setOwner(customerService.getOne(dto.getCustomer().getId()));
+            account.setOwner(customerService.getOne(dto.getCustomer().getId()).get());
             accountService.save(account);
             return ResponseEntity.ok().body(responseAccountMapper.convertToDto(account));
         } catch (Exception e){
@@ -78,11 +82,11 @@ public class AccountController {
     }
 
     @Operation(summary = "delete an account")
-    @Parameter(name = "accountNumber", description = "account number")
-    @DeleteMapping("/delete/{accountNumber}")
-    public ResponseEntity<?> delete(@PathVariable String accountNumber){
+    @DeleteMapping("/{accountId}")
+    public ResponseEntity<?> delete(@PathVariable long accountId){
         try {
-            accountService.deleteById(Long.parseLong(accountNumber));
+            System.out.println(accountId);
+            accountService.deleteById(accountId);
             return ResponseEntity.ok().body("deleted");
         } catch (Exception e){
             e.printStackTrace();

@@ -4,46 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a885c13-9cec-490e-9b04-3dfad9587509" name="Changes" comment="ignore + 404 + acc view">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Account/AccountStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Account/AccountDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Account/AccountDTORequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Account/AccountDTOResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Account/AccountRequestMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Account/AccountResponseMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Customer/CustomerDTORequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Customer/CustomerDTOResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Customer/CustomerDTOResponseView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Customer/CustomerRequestMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Customer/CustomerResponseMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/DTOMapperFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Employer/EmployerDTORequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Employer/EmployerDTOResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Employer/EmployerRequestMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Employer/EmployerResponseMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/.env" afterDir="false" />
+    <list default="true" id="9a885c13-9cec-490e-9b04-3dfad9587509" name="Changes" comment="initial">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/SpringBankAdminPanelApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/SpringBankAdminPanelApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/AccountsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/AccountsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/EmployerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/dao/EmployerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/AbstractEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/AbstractEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Account/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Account/Currency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Customer/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Employer.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Employer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/domain/Account/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resource/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resource/AccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resource/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/resource/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/EmployerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/EmployerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/ServiceI.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/service/ServiceI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Account/AccountDTORequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/coyjiv/springbankadminpanel/transfer/Account/AccountDTORequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/data-postgres.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/schema-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/schema-postgres.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/AddUserModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/AddUserModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/UserAccounts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/UserAccounts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/EditCustomerModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/EditCustomerModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/UserList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/UserList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/state/users/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/state/users/users.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +42,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="restored" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JpbToolWindowState">
@@ -185,6 +167,10 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/backend/target/backend-0.0.1-SNAPSHOT.jar" />
       <method v="2" />
     </configuration>
+    <configuration name="client-0.0.1-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/client/target/client-0.0.1-SNAPSHOT.jar" />
+      <method v="2" />
+    </configuration>
     <configuration name="SpringBankAdminPanelApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ACTIVE_PROFILES" />
       <envs>
@@ -199,6 +185,7 @@
     <list>
       <item itemvalue="Application.SpringBankAdminPanelApplication" />
       <item itemvalue="Database Script.schema-postgres.sql" />
+      <item itemvalue="JAR Application.client-0.0.1-SNAPSHOT.jar" />
       <item itemvalue="JAR Application.backend-0.0.1-SNAPSHOT.jar" />
       <item itemvalue="JUnit.All in spring-bank-admin-panel" />
       <item itemvalue="Spring Boot.SpringBankAdminPanelApplication" />
@@ -206,6 +193,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.SpringBankAdminPanelApplication" />
+        <item itemvalue="JAR Application.client-0.0.1-SNAPSHOT.jar" />
         <item itemvalue="JAR Application.backend-0.0.1-SNAPSHOT.jar" />
         <item itemvalue="JUnit.All in spring-bank-admin-panel" />
       </list>
@@ -239,6 +227,9 @@
       <workItem from="1702772855312" duration="4904000" />
       <workItem from="1702920502325" duration="599000" />
       <workItem from="1703374892959" duration="1507000" />
+      <workItem from="1705233660740" duration="4231000" />
+      <workItem from="1705417548257" duration="244000" />
+      <workItem from="1706190256898" duration="862000" />
     </task>
     <task id="LOCAL-00001" summary="customer activities finished">
       <option name="closed" value="true" />

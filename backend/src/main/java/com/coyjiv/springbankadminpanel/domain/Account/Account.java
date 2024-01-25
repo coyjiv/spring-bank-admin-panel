@@ -8,7 +8,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.engine.internal.Cascade;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Setter
@@ -25,10 +27,10 @@ public class Account extends AbstractEntity {
     @Column(name = "balance", nullable = false)
     private Double balance;
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", length = 10, nullable = false)
-    private AccountStatus status;
+//    @Column(name = "status", length = 10, nullable = false)
+//    private AccountStatus status;
     @JsonBackReference
-    @ManyToOne
+    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinColumn(name = "customer_id")
     private Customer owner;
 
